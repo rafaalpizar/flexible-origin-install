@@ -14,11 +14,16 @@ source /srv/flexible-origin_venv/bin/activate
 pip3 install flask
 deactivate
 
+# Setup Flexible Origin log file
+touch /srv/flexible-origin/static/fo.log
+chgrp www-data /srv/flexible-origin/static/fo.log
+chmod g+w /srv/flexible-origin/static/fo.log
+
 # Configure Apache
 curl -o /etc/apache2/sites-available/flexible-origin.conf \
      https://raw.githubusercontent.com/rafaalpizar/flexible-origin-install/master/apache/flexible-origin.conf
 
-a2dissite *
+a2dissite '*'
 a2ensite flexible-origin.conf
 a2enmod wsgi ssl security2
 
