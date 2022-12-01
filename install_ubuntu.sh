@@ -8,7 +8,7 @@ apt install -y curl emacs git libapache2-mod-wsgi-py3 python3 python3-pip python
 
 # Install and configure Flexible Origin code
 cd /srv
-git clone https://github.com/rafaalpizar/flexible-origin.git /srv/flexible-origin
+git clone -b master --depth 1 https://github.com/rafaalpizar/flexible-origin.git /srv/flexible-origin
 python3 -m venv /srv/flexible-origin_venv
 source /srv/flexible-origin_venv/bin/activate
 pip3 install flask
