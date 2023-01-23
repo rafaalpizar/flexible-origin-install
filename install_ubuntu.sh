@@ -39,3 +39,16 @@ systemctl restart apache2
 curl -o /etc/cron.hourly/flexible-origin_restart \
      https://raw.githubusercontent.com/rafaalpizar/flexible-origin-install/master/cron/flexible-origin_restart
 chmod u+x /etc/cron.hourly/flexible-origin_restart
+
+# Configure firewall
+iptables -A INPUT -s 127.0.0.0/8 -i lo -j ACCEPT
+iptables -A INPUT -d 127.0.0.0/8 ! -i lo -j REJECT --reject-with icmp-port-unreachable
+iptables -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+apt install -y iptables-persistent
