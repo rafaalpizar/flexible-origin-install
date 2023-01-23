@@ -3,6 +3,7 @@
 cd ~
 
 # Install software
+export DEBIAN_FRONTEND=noninteractive
 apt update
 apt install -y curl emacs git libapache2-mod-wsgi-py3 python3 python3-pip python3-venv apache2 libapache2-mod-security2
 
