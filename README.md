@@ -16,3 +16,11 @@ Tested on 22.04+ LTS
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/rafaalpizar/flexible-origin-install/master/install_blue_ubuntu.sh)
 ```
+
+## Ubuntu 22.04 LTS - green
+Create a flexible origin instance with green background
+Tested on 22.04+ LTS
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/rafaalpizar/flexible-origin-install/master/install_green_ubuntu.sh)
+```
