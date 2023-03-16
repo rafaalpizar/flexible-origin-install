@@ -51,6 +51,15 @@ iptables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
 iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT ACCEPT
+ip6tables -A INPUT -s ::1/128 -i lo -j ACCEPT
+ip6tables -A INPUT -d ::1/128 ! -i lo -j REJECT --reject-with icmp6-port-unreachable
+ip6tables -A INPUT -p ipv6-icmp -j ACCEPT
+ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+ip6tables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
+ip6tables -A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+ip6tables -P INPUT DROP
+ip6tables -P FORWARD DROP
+ip6tables -P OUTPUT ACCEPT
 
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
 echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
