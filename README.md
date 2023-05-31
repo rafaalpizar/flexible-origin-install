@@ -24,3 +24,15 @@ Tested on 22.04+ LTS
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/rafaalpizar/flexible-origin-install/master/install_green_ubuntu.sh)
 ```
+
+## Docker
+- To build the image:
+```bash
+docker build -t flexible-origin:latest .
+```
+
+- To test a container:
+```bash
+docker run -it --rm --name fo flexible-origin:latest
+```
+
