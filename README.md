@@ -33,6 +33,5 @@ docker build -t flexible-origin:latest .
 
 - To test a container:
 ```bash
-docker run -it --rm --name fo flexible-origin:latest
+docker run -it --rm -p 5080:80 -p 50443:443 --name fo flexible-origin:latest
 ```
-
