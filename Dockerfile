@@ -2,7 +2,7 @@ FROM httpd
 
 ARG GIT_BRANCH=master
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt update; \
+RUN apt update; apt -y upgrade; \
 apt install -y curl git libapache2-mod-wsgi-py3 python3 python3-pip python3-venv libapache2-mod-security2; \
 mkdir -p /etc/cron.hourly; \
 mkdir -p /srv/tls_certs/; \
@@ -11,7 +11,7 @@ mkdir -p /var/log/apache2; \
 mkdir -p /var/www/html; \
 chgrp www-data /var/run/apache2; \
 chgrp www-data /var/log/apache2; \
-git clone -b ${GIT_BRANCH} --depth 1 https://github.com/rafaalpizar/flexible-origin.git /srv/flexible-origin; \
+git clone -b master --depth 1 https://github.com/rafaalpizar/flexible-origin.git /srv/flexible-origin; \
 python3 -m venv /srv/flexible-origin_venv; \
 /bin/bash -c 'source /srv/flexible-origin_venv/bin/activate && pip3 install flask && deactivate'; \
 touch /srv/flexible-origin/static/fo.log; \
